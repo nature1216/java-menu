@@ -1,5 +1,7 @@
 package menu.domain;
 
+import menu.config.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,7 @@ public class Coach {
     private List<String> recommendations;
 
     public Coach(String name) {
+        validateName(name);
         this.name = name;
         this.dislikes = new ArrayList<>();
         this.recommendations = new ArrayList<>();
@@ -42,5 +45,11 @@ public class Coach {
 
     public List<String> getRecommendations() {
         return recommendations;
+    }
+
+    private void validateName(String name) {
+        if(name.length() < 2 || name.length() > 4) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH);
+        }
     }
 }

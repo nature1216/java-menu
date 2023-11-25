@@ -7,6 +7,8 @@ import menu.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class RecommendController {
     private final InputView inputView;
@@ -33,9 +35,14 @@ public class RecommendController {
     }
 
     public void getInput() {
-        coaches = recommendService.getCoaches(inputView.readName());
-        for(Coach coach : coaches) {
-            recommendService.setDislikes(coach, inputView.readDislike(coach.getName()));
+        try {
+            coaches = recommendService.getCoaches(inputView.readName());
+            for(Coach coach : coaches) {
+                recommendService.setDislikes(coach, inputView.readDislike(coach.getName()));
+            }
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            getInput();
         }
     }
 

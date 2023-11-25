@@ -45,4 +45,13 @@ public enum MenuType {
         }
         throw new IllegalArgumentException();
     }
+
+    public static boolean isValidMenuName(String name) {
+        for(MenuType menuType : MenuType.values()) {
+            if(menuType.menus.contains(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
