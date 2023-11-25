@@ -43,7 +43,7 @@ public class RecommendController {
     private void getNameInput() {
         try {
             String names = inputView.readName();
-            Validator.validateCoachNum(names);
+            Validator.validateName(names);
             coaches = recommendService.getCoaches(names);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());

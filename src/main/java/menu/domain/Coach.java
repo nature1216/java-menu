@@ -53,6 +53,10 @@ public class Coach {
     }
 
     private void validateMenu(List<String> menus) {
+        if(menus.get(0).isEmpty() && menus.size() == 1) {
+            return;
+        }
+
         for (String menu : menus) {
             if (!MenuType.isValidMenuName(menu)) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_MENU_NAME);
