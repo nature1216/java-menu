@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Coach;
 import menu.domain.Menus;
 import menu.enumeration.CategoryType;
+import menu.enumeration.MenuType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,7 @@ public class RecommendService {
         for(Coach coach : coaches) {
             while(coach.countRecommendations() < 5) {
                 int category = Randoms.pickNumberInRange(1, 5);
-                CategoryType categoryType = CategoryType.getByNum(category);
-                Menus menus = new Menus();
-                List<String> menuByCategory = menus.getByCategory(categoryType);
+                List<String> menuByCategory = MenuType.getMenusByCategory(category);
                 String menu = Randoms.shuffle(menuByCategory).get(0);
                 System.out.println(menu);
                 if(coach.exist(menu)) {
