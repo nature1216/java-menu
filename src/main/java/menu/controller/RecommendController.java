@@ -23,6 +23,7 @@ public class RecommendController {
     public void run() {
         outputView.printStart();
         getInput();
+        makeRecommendation();
     }
 
     public void getInput() {
@@ -30,5 +31,9 @@ public class RecommendController {
         for(Coach coach : coaches) {
             recommendService.setDislikes(coach, inputView.readDislike(coach.getName()));
         }
+    }
+
+    public void makeRecommendation() {
+
     }
 }

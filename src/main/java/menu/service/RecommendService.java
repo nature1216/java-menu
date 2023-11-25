@@ -19,4 +19,8 @@ public class RecommendService {
         List<String> dislike = List.of(dislikes.split(","));
         coach.addDislike(dislike);
     }
+
+    public void recommend(Coach coach) {
+
+    }
 }
