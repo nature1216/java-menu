@@ -20,26 +20,17 @@ public enum MenuType {
     }
 
     public static List<String> getMenusByCategory(int category) {
-        for(MenuType menuType : MenuType.values()) {
-            if(menuType.categoryNum == category) {
+        for (MenuType menuType : MenuType.values()) {
+            if (menuType.categoryNum == category) {
                 return menuType.menus;
             }
         }
         throw new IllegalArgumentException();
     }
 
-    public static int getCategoryNumByMenu(String query) {
-        for(MenuType menuType : MenuType.values()) {
-            if(menuType.menus.contains(query)) {
-                return menuType.categoryNum;
-            }
-        }
-        throw new IllegalArgumentException();
-    }
-
     public static String getCategoryNameByNum(int categoryNum) {
-        for(MenuType menuType : MenuType.values()) {
-            if(menuType.categoryNum == categoryNum) {
+        for (MenuType menuType : MenuType.values()) {
+            if (menuType.categoryNum == categoryNum) {
                 return menuType.categoryName;
             }
         }
@@ -47,8 +38,8 @@ public enum MenuType {
     }
 
     public static boolean isValidMenuName(String name) {
-        for(MenuType menuType : MenuType.values()) {
-            if(menuType.menus.contains(name)) {
+        for (MenuType menuType : MenuType.values()) {
+            if (menuType.menus.contains(name)) {
                 return true;
             }
         }

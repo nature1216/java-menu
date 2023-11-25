@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public void printMenus(List<Coach> coaches) {
-        for(Coach coach : coaches) {
+        for (Coach coach : coaches) {
             System.out.println("[ " + coach.getName() + " | " +
                     String.join(" | ", coach.getRecommendations()) +
                     " ]");

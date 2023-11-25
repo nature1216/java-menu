@@ -3,9 +3,7 @@ package menu.domain;
 import menu.config.ErrorMessage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Coach {
     private String name;
@@ -49,14 +47,14 @@ public class Coach {
     }
 
     private void validateName(String name) {
-        if(name.length() < 2 || name.length() > 4) {
+        if (name.length() < 2 || name.length() > 4) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH);
         }
     }
 
     private void validateMenu(List<String> menus) {
-        for(String menu : menus) {
-            if(!MenuType.isValidMenuName(menu)) {
+        for (String menu : menus) {
+            if (!MenuType.isValidMenuName(menu)) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_MENU_NAME);
             }
         }
