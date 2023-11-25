@@ -6,17 +6,14 @@ import menu.validator.Validator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class RecommendController {
     private final InputView inputView;
     private final OutputView outputView;
     private final RecommendService recommendService;
     private List<Coach> coaches;
-    private List<Integer> categoryNums;
+    private final List<Integer> categoryNums;
 
     public RecommendController(InputView inputView, OutputView outputView, RecommendService recommendService) {
         this.inputView = inputView;
