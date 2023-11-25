@@ -24,29 +24,38 @@ public class RecommendService {
     }
 
     public void recommend(List<Coach> coaches) {
+        List<Integer> categories = pickCategories();
+        for(Coach coach : coaches) {
+            recommendByCoach(coach, categories);
+            coach.print();
+        }
+    }
+
+    public void recommendByCoach(Coach coach, List<Integer> categories) {
+        int index = 0;
+        while(coach.countRecommendations() < 5) {
+            List<String> menuByCategory = MenuType.getMenusByCategory(categories.get(index));
+            String menu = Randoms.shuffle(menuByCategory).get(0);
+
+            if(coach.exist(menu) || coach.isDislike(menu)) {
+                continue;
+            }
+
+            coach.addRecommendations(menu);
+            index++;
+        }
+    }
+
+    public List<Integer> pickCategories() {
         List<Integer> categories = new ArrayList<>();
         while(categories.size() < 5) {
             int category = Randoms.pickNumberInRange(1, 5);
-            if(Collections.frequency(categories, category) > 2) {
+            if(Collections.frequency(categories, category) >= 2) {
                 continue;
             }
             categories.add(category);
         }
         System.out.print(categories);
-        for(Coach coach : coaches) {
-            int index = 0;
-            while(coach.countRecommendations() < 5) {
-                int category = categories.get(index);
-                List<String> menuByCategory = MenuType.getMenusByCategory(category);
-                String menu = Randoms.shuffle(menuByCategory).get(0);
-                System.out.println(menu);
-                if(coach.exist(menu)) {
-                    continue;
-                }
-                coach.addRecommendations(menu);
-                index++;
-            }
-            coach.print();
-        }
+        return categories;
     }
 }

@@ -28,6 +28,10 @@ public class Coach {
         return recommendations.contains(menu);
     }
 
+    public boolean isDislike(String menu) {
+        return dislikes.contains(menu);
+    }
+
     public int countRecommendations() {
         return recommendations.size();
     }
