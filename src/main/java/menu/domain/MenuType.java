@@ -36,4 +36,13 @@ public enum MenuType {
         }
         throw new IllegalArgumentException();
     }
+
+    public static String getCategoryNameByNum(int categoryNum) {
+        for(MenuType menuType : MenuType.values()) {
+            if(menuType.categoryNum == categoryNum) {
+                return menuType.categoryName;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
 }

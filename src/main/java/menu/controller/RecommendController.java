@@ -13,17 +13,20 @@ public class RecommendController {
     private final OutputView outputView;
     private final RecommendService recommendService;
     private List<Coach> coaches;
+    private List<Integer> categoryNums;
 
     public RecommendController(InputView inputView, OutputView outputView, RecommendService recommendService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.recommendService = recommendService;
+        this.categoryNums = recommendService.pickCategories();
     }
 
     public void run() {
         outputView.printStart();
         getInput();
         makeRecommendation();
+        getResult();
     }
 
     public void getInput() {
@@ -34,6 +37,11 @@ public class RecommendController {
     }
 
     public void makeRecommendation() {
-        recommendService.recommend(coaches);
+        recommendService.recommend(coaches, categoryNums);
+    }
+
+    public void getResult() {
+        List<String> categoryNames = recommendService.getCategoryNames(categoryNums);
+        outputView.printResult(coaches, categoryNames);
     }
 }

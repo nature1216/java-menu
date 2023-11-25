@@ -23,11 +23,9 @@ public class RecommendService {
         coach.addDislike(dislike);
     }
 
-    public void recommend(List<Coach> coaches) {
-        List<Integer> categories = pickCategories();
+    public void recommend(List<Coach> coaches, List<Integer> categories) {
         for(Coach coach : coaches) {
             recommendByCoach(coach, categories);
-            coach.print();
         }
     }
 
@@ -55,7 +53,14 @@ public class RecommendService {
             }
             categories.add(category);
         }
-        System.out.print(categories);
         return categories;
+    }
+
+    public List<String> getCategoryNames(List<Integer> categories) {
+        List<String> names = new ArrayList<>();
+        for(int categoryNum : categories) {
+            names.add(MenuType.getCategoryNameByNum(categoryNum));
+        }
+        return names;
     }
 }

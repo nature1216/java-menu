@@ -40,17 +40,7 @@ public class Coach {
         recommendations.add(menu);
     }
 
-    public int countCategory(int category) {
-        int count = 0;
-        for (String menu : recommendations) {
-            if (MenuType.getCategoryNumByMenu(menu) == category) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public void print() {
-        System.out.println(name + recommendations);
+    public List<String> getRecommendations() {
+        return recommendations;
     }
 }
