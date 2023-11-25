@@ -2,11 +2,10 @@ package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Coach;
-import menu.domain.Menus;
-import menu.enumeration.CategoryType;
-import menu.enumeration.MenuType;
+import menu.domain.MenuType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RecommendService {
@@ -25,9 +24,19 @@ public class RecommendService {
     }
 
     public void recommend(List<Coach> coaches) {
+        List<Integer> categories = new ArrayList<>();
+        while(categories.size() < 5) {
+            int category = Randoms.pickNumberInRange(1, 5);
+            if(Collections.frequency(categories, category) > 2) {
+                continue;
+            }
+            categories.add(category);
+        }
+        System.out.print(categories);
         for(Coach coach : coaches) {
+            int index = 0;
             while(coach.countRecommendations() < 5) {
-                int category = Randoms.pickNumberInRange(1, 5);
+                int category = categories.get(index);
                 List<String> menuByCategory = MenuType.getMenusByCategory(category);
                 String menu = Randoms.shuffle(menuByCategory).get(0);
                 System.out.println(menu);
@@ -35,8 +44,9 @@ public class RecommendService {
                     continue;
                 }
                 coach.addRecommendations(menu);
+                index++;
             }
-
+            coach.print();
         }
     }
 }
