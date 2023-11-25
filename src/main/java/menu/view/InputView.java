@@ -8,4 +8,9 @@ public class InputView {
         System.out.println(NoticeMessage.READ_COACHES);
         return Console.readLine();
     }
+
+    public String readDislike(String name) {
+        System.out.println(String.format(NoticeMessage.READ_DISLIKES, name));
+        return Console.readLine();
+    }
 }

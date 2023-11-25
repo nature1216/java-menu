@@ -26,7 +26,9 @@ public class RecommendController {
     }
 
     public void getInput() {
-        String names = inputView.readName();
-        coaches = recommendService.getCoaches(names);
+        coaches = recommendService.getCoaches(inputView.readName());
+        for(Coach coach : coaches) {
+            inputView.readDislike(coach.getName());
+        }
     }
 }
