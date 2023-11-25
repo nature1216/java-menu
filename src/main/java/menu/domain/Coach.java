@@ -24,6 +24,7 @@ public class Coach {
     }
 
     public void addDislike(List<String> menus) {
+        validateMenu(menus);
         dislikes.addAll(menus);
     }
 
@@ -51,5 +52,14 @@ public class Coach {
         if(name.length() < 2 || name.length() > 4) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH);
         }
+    }
+
+    private void validateMenu(List<String> menus) {
+        for(String menu : menus) {
+            if(!MenuType.isValidMenuName(menu)) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_MENU_NAME);
+            }
+        }
+
     }
 }

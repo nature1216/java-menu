@@ -35,14 +35,27 @@ public class RecommendController {
     }
 
     public void getInput() {
+        getNameInput();
+        getMenuInput();
+    }
+
+    private void getNameInput() {
         try {
             coaches = recommendService.getCoaches(inputView.readName());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            getNameInput();
+        }
+    }
+
+    private void getMenuInput() {
+        try {
             for(Coach coach : coaches) {
                 recommendService.setDislikes(coach, inputView.readDislike(coach.getName()));
             }
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            getInput();
+            getMenuInput();
         }
     }
 
