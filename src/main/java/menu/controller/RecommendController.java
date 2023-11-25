@@ -34,6 +34,6 @@ public class RecommendController {
     }
 
     public void makeRecommendation() {
-
+        recommendService.recommend(coaches);
     }
 }

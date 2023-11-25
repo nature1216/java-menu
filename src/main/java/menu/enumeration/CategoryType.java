@@ -16,4 +16,13 @@ public enum CategoryType {
     public int getNum() {
         return num;
     }
+
+    public static CategoryType getByNum(int n) {
+        for(CategoryType categoryType : CategoryType.values()) {
+            if(categoryType.num == n) {
+                return categoryType;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
 }
