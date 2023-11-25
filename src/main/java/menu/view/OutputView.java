@@ -8,6 +8,7 @@ import java.util.List;
 public class OutputView {
     public void printStart() {
         System.out.println(NoticeMessage.START_SYSTEM);
+        System.out.println();
     }
 
     public void printResult(List<Coach> coaches, List<String> categoryNames) {
@@ -29,5 +30,10 @@ public class OutputView {
                     String.join(" | ", coach.getRecommendations()) +
                     " ]");
         }
+        System.out.println();
+    }
+
+    public void printFinish() {
+        System.out.print(NoticeMessage.FINISH_SYSTEM);
     }
 }

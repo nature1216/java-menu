@@ -24,9 +24,12 @@ public class RecommendController {
 
     public void run() {
         outputView.printStart();
+
         getInput();
         makeRecommendation();
         getResult();
+
+        outputView.printFinish();
     }
 
     public void getInput() {
