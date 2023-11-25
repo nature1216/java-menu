@@ -14,4 +14,9 @@ public class RecommendService {
         }
         return coaches;
     }
+
+    public void setDislikes(Coach coach, String dislikes) {
+        List<String> dislike = List.of(dislikes.split(","));
+        coach.addDislike(dislike);
+    }
 }
