@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Coach;
 import menu.service.RecommendService;
+import menu.validator.Validator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -41,7 +42,9 @@ public class RecommendController {
 
     private void getNameInput() {
         try {
-            coaches = recommendService.getCoaches(inputView.readName());
+            String names = inputView.readName();
+            Validator.validateCoachNum(names);
+            coaches = recommendService.getCoaches(names);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             getNameInput();
